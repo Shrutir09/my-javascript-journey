@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Simulation</title>
+  <style>
+        body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #3f3838;
+}
+
+.container {
+  text-align: center;
+}
+
+.progress-bar {
+  width: 300px;
+  height: 30px;
+  background-color: #f9eeee;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background-color: #090f0a;
+  border-radius: 15px;
+  transition: width 0.5s ease;
+}
+
+#status {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Download Progress</h2>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+    <p id="status">0%</p>
+  </div>
+   
+  <script>
+    let progress=document.querySelector(".progress");
+    let status=document.querySelector("#status");
+    let count=0;
+    let interval=setInterval(function(){
+        if(count<100){
+            count++;
+            progress.style.width=count+'%';
+            status.textContent=count+'%';
+        }else{
+            status.textContent='Downloaded';
+            clearInterval(interval);
+        }
+    }, 50);
+  </script>
+  
+</body>
+</html>
