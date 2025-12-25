@@ -1,0 +1,45 @@
+/* Common styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+}
+
+/* 🌞 Light Theme */
+.light-theme {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.light-theme button {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* 🌙 Dark Theme */
+.dark-theme {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-theme button {
+  background-color: #ffffff;
+  color: #000000;
+}
