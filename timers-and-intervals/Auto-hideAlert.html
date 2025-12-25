@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Hide Alert</title>
+<style>
+  .alert {
+    padding: 15px;
+    background-color: #964caf; 
+    color: white;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 0.5s ease; 
+  }
+  .hide {
+    opacity: 0;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="alert" id="myAlert">This is a success alert!</div>
+
+<script>
+ 
+  setTimeout(() => {
+    const alert = document.getElementById("myAlert");
+    alert.classList.add("hide");
+  }, 3000); 
+</script>
+
+</body>
+</html>
