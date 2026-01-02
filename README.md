@@ -6,6 +6,9 @@ from basics to advanced concepts and projects.
 ## 📌 Topics Covered
 - JavaScript Basics
 - DOM Manipulation & Events
+- Forms and Validation
+- OOP
+- Closures
 - Mini Projects
 - Advanced JavaScript Concepts
 
