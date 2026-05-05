@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+    .bigText { font-size: 30px; }
+    .blueBg { background-color: lightblue; }
+</style>
+
+<p id="para">Hello World</p>
+
+<script>
+let p = document.getElementById("para");
+
+// Inline style (direct style change)
+p.style.color = "green";
+p.style.padding = "10px";
+
+// Adding classes
+p.classList.add("bigText", "blueBg");
+
+// Removing class
+p.classList.remove("blueBg");
+
+// Toggle class
+p.classList.toggle("blueBg");  // adds it again
+p.classList.toggle("blueBg");  // removes it again
+</script>
+
+</body>
+</html>

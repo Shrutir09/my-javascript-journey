@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile Card Creator</title>
+  <style>
+    /* page background like in the image */
+    :root{
+      --bg: #0f0f01;
+      --panel: rgba(255, 255, 255, 0.148);
+      --muted: rgba(214, 209, 209, 0.6);
+      --accent: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: #235482;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* main wrapper: keeps form + cards area */
+    #main {
+      max-width: 1100px;
+      margin: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* small top-left form area */
+    form {
+      width: 260px;                 /* narrow like image */
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 6px;
+      background: transparent;
+    }
+
+    form label{
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+      text-transform: none;
+    }
+
+    /* input style exactly like image: small rounded boxes with thin border */
+    form input[type="text"],
+    form textarea {
+      background: transparent;
+      color: #e1ece3;
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      border-radius: 6px;
+      outline: none;
+      font-size: 13px;
+    }
+
+    form textarea{
+      min-height: 52px;
+      resize: vertical;
+    }
+
+    /* Submit button small pale */
+    form input[type="submit"]{
+      width: 80px;
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    form input::placeholder, form textarea::placeholder {
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* container for cards (so card appears under the form like image) */
+    .cards-area {
+      margin-top: 6px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      /* allow cards stacking vertically if many */
+      flex-wrap: wrap;
+    }
+
+    /* card style matching screenshot */
+    .card {
+      width: 360px;                 /* slightly wider to match screenshot proportions */
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 18px 20px;
+      box-sizing: border-box;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+      color: #fff;
+    }
+
+    /* left profile image circle */
+    .profile {
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .profile img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,0.12);
+      background: var(--accent);
+    }
+
+    /* card text block */
+    .card .info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .card h5 {
+      margin: 0;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 700;
+    }
+
+    .card p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.4;
+    }
+
+    /* smaller screen adjustments */
+    @media (max-width:720px){
+      #main{
+        margin:20px;
+      }
+      .card { width:100%; flex-direction:row; }
+      form { width:100%; max-width:400px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="main">
+    <!-- FORM (order: imageURL, name, occupation, info, submit) -->
+    <form id="profileForm">
+      <label for="imgUrl">profile pic</label>
+      <input type="text" id="imgUrl" placeholder="image url" />
+
+      <label for="name">name</label>
+      <input type="text" id="name" placeholder="name" />
+
+      <label for="job">occupation</label>
+      <input type="text" id="job" placeholder="occupation" />
+
+      <label for="info">info</label>
+      <textarea id="info" placeholder="short info"></textarea>
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <!-- Cards area: JS will append .card elements here (below the form as in the screenshot) -->
+    <div class="cards-area" id="cardsArea">
+      <!-- cards created by JS will appear here -->
+    </div>
+  </div>
+
+
+  <script>
+    
+
+    let form = document.querySelector("form");
+    let inputs = document.querySelectorAll("input, textarea"); // includes textarea
+    let cardsArea = document.querySelector("#cardsArea");
+
+    form.addEventListener("submit", function(dets){
+      dets.preventDefault();
+
+      let card = document.createElement("div");
+      card.classList.add("card");
+
+      let profile = document.createElement("div");
+      profile.classList.add("profile");
+
+      let img = document.createElement("img");
+      img.setAttribute("src", inputs[0].value || "https://via.placeholder.com/64");
+
+      let infoWrap = document.createElement("div");
+      infoWrap.classList.add("info");
+
+      let h3 = document.createElement("h3");
+      h3.textContent = inputs[1].value || "Name";
+
+      let h5 = document.createElement("h5");
+      h5.textContent = inputs[2].value || "Occupation";
+
+      let p = document.createElement("p");
+      p.textContent = inputs[3].value || "Info";
+
+      profile.appendChild(img);
+      infoWrap.appendChild(h3);
+      infoWrap.appendChild(h5);
+      infoWrap.appendChild(p);
+
+      card.appendChild(profile);
+      card.appendChild(infoWrap);
+
+      cardsArea.appendChild(card);
+
+      // clear inputs (skip submit)
+      inputs.forEach(function (inp) {
+        if (inp.type !== "submit") {
+          inp.value = "";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

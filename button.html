@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #Container {
+            
+            background-color: black;
+            text-align: center;
+            align-items: center;
+          
+            height: 100vh;                 /* full screen height */
+    display: flex;
+    flex-direction: column;        /* filename upar, button niche */
+    justify-content: center;       /* vertical center */
+    align-items: center;           /* horizontal center */
+    font-family: Arial;
+
+        }
+
+        #uploadBtn {
+            padding: 10px 20px;
+            align-items: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+            background-color: green;
+            color: white;
+            cursor: pointer;
+        }
+
+        #uploadBtn:hover{
+            background-color:  chocolate;
+             color: white;
+        transform: scale(1.1);
+        }
+        #fileName {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+    </style>
+    <div id="Container">
+        <p id="fileName">No File Selected</p>
+    <input type="file" id="fileInput" style="display: none;">
+    <button id="uploadBtn">Upload File</button>
+    </div>
+
+    <script>
+        let fileInput= document.getElementById("fileInput");
+        let fileName=document.getElementById("fileName");
+        let uploadBtn=document.getElementById("uploadBtn");
+
+        uploadBtn.addEventListener("click", function(){
+            fileInput.click();
+        })
+
+        fileInput.addEventListener("change", function() {
+    if (fileInput.files.length > 0) {
+        fileName.innerText = fileInput.files[0].name;
+    } else {
+        fileName.innerText = "No file selected";
+    }
+});
+    </script>
+   
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+}
+
+.counter-box {
+    background: white;
+    padding: 30px 50px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.counter-box h2 {
+    margin-bottom: 10px;
+}
+
+.counter-box h1 {
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+.counter-box button {
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+     <div class="counter-box">
+        <h2>Counter</h2>
+        <h1 id="count">20</h1>
+        
+    </div>
+
+    <script>
+        let count=20;
+        let countElement=document.getElementById("count");
+
+        let interval=setInterval(function(){
+               
+                   countElement.innerText=count;
+                    count--;
+               
+                if(count<0){
+                    clearInterval(interval);
+                }
+        }, 1000);
+
+
+
+    </script>
+</body>
+</html>

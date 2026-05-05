@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class CreatePencil {
+            constructor(name, color, price, company) {
+                this.name = name;
+                this.color = color;
+                this.price = price;
+                this.company = company;
+            }
+            // write method
+            write(text) {
+                let h1 = document.createElement('h1');
+                h1.textContent = text;
+                h1.style.color = this.color;
+                document.body.appendChild(h1);
+            }
+
+            // erase method
+            erase() {
+                document.body.querySelectorAll('h1').forEach((elem) => {
+                    if (elem.style.color === this.color){
+                    elem.remove();
+                    }
+                })
+            }
+        }
+
+        let p1 = new CreatePencil("Nataraj", "blue", 10, "Nataraj Ltd");
+        let p2 = new CreatePencil("Apsara", "black", 15, "Apsara Ltd");
+        p1.write("Hello World with Blue Pencil");
+        p2.write("Hello World with Black Pencil");
+        p1.erase();
+        p2.erase();
+    </script>
+</body>
+</html>

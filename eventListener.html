@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="main">
+        <h1>a</h1>
+    </div>
+    <style>
+        body{
+            display: flex;
+            background-color: bisque;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        #main{
+            font-size: 70px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            background-color: none;
+            margin:0;
+            padding: 0;
+            width: 100;
+            height: 100;
+            box-shadow: 0 0 20px rgba(red, green, blue, alpha);
+        }
+        h1{
+            color: black;
+            font-size: larger;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    <script>
+        let h1=document.querySelector("h1");
+        window.addEventListener("keydown", function(dets){
+            if(dets.key===" "){
+                h1.textContent="SPC";
+            }
+            else{
+              h1.textContent=dets.key;  
+            }
+        });
+    </script>
+
+    
+    
+</body>
+</html>
